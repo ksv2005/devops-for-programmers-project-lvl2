@@ -2,6 +2,22 @@
 - hosts: all
   gather_facts: yes
 
+  tasks:
+    - name: Copy config
+      ansible.builtin.template:
+        src: templates/.env
+        dest: .env
+      become: yes
+
+    - name: Deploy redmine
+      community.docker.docker_container:
+        name: redmine
+        image: redmine:5.0.2
+        ports:
+          - 80:3000
+        state: started
+        env_file: ".env"
+
   vars:
     pip_install_packages:
       - name: docker
