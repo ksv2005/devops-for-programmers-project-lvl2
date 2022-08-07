@@ -3,4 +3,4 @@ setup:
 	ansible-galaxy role install -r requirements.yml
 
 deploy:
-	ansible-playbook playbook.yml -i inventory.ini --vault-password-file .password
+	ansible-playbook playbook.yml -i inventory.ini --vault-password-file vault-password
