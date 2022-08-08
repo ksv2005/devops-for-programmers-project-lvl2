@@ -1,14 +1,18 @@
 ---
+
 - hosts: all
   gather_facts: yes
-
+  roles:
+    - geerlingguy.pip
+  vars:
+    pip_install_packages:
+      - name: docker
   tasks:
     - name: Copy config
       ansible.builtin.template:
         src: templates/.env
         dest: .env
       become: yes
-
     - name: Deploy redmine
       community.docker.docker_container:
         name: redmine
@@ -18,9 +22,16 @@
         state: started
         env_file: ".env"
 
-  vars:
-    pip_install_packages:
-      - name: docker
-
+- hosts: webservers
+  vars_files:
+    - group_vars/webservers/vars.yml
+    - group_vars/webservers/vault.yml
   roles:
-    - geerlingguy.pip
+      - { role: datadog.datadog, become: yes }
+  vars:
+    datadog_checks:
+      process:
+        init_config:
+        instances:
+          - name: Check website
+            url: "{{ url }}"
