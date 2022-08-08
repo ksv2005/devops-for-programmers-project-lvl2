@@ -24,7 +24,6 @@
 
 - hosts: webservers
   vars_files:
-    - group_vars/webservers/vars.yml
     - group_vars/webservers/vault.yml
   roles:
       - { role: datadog.datadog, become: yes }
