@@ -1,6 +1,6 @@
 redmine_version: 5.0.2
 url: https://home-cooking.ru/
-redmine_db_host: "{{ redmine_db_host }}"
+redmine_db_postgres: "{{ redmine_db_postgres }}"
 redmine_db_database: "{{ redmine_db_database }}"
 redmine_db_username: "{{ redmine_db_username }}"
 redmine_db_password: "{{ redmine_db_password }}"
