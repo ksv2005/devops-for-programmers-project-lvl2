@@ -1,7 +1,7 @@
 ---
 
 - hosts: all
-  gather_facts: yes
+  gather_facts: true
   roles:
     - geerlingguy.pip
   vars:
@@ -12,6 +12,7 @@
       ansible.builtin.template:
         src: templates/.env
         dest: .env
+        mode: 0644
     - name: Deploy redmine
       community.docker.docker_container:
         name: redmine
@@ -23,7 +24,7 @@
 
 - hosts: webservers
   roles:
-      - { role: datadog.datadog, become: yes }
+    - { role: datadog.datadog, become: true }
   vars:
     datadog_checks:
       process:
