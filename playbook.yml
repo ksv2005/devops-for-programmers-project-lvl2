@@ -15,7 +15,7 @@
     - name: Deploy redmine
       community.docker.docker_container:
         name: redmine
-        image: redmine:{{ redmine_version }}
+        image: redmine
         ports:
           - 80:3000
         state: started
@@ -30,4 +30,4 @@
         init_config:
         instances:
           - name: Check website
-            url: "{{ url }}"
+            url: "https://home-cooking.ru/"
