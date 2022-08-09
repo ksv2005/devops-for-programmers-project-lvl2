@@ -11,8 +11,7 @@
     - name: Copy config
       ansible.builtin.template:
         src: templates/.env
-        dest: .env
-      become: yes
+        dest: /.env
     - name: Deploy redmine
       community.docker.docker_container:
         name: redmine
@@ -20,7 +19,7 @@
         ports:
           - 80:3000
         state: started
-        env_file: ".env"
+        env_file: /.env
 
 - hosts: webservers
   roles:
