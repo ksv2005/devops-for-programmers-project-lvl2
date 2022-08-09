@@ -16,15 +16,13 @@
     - name: Deploy redmine
       community.docker.docker_container:
         name: redmine
-        image: redmine:{{ version }}
+        image: redmine:{{ redmine_version }}
         ports:
           - 80:3000
         state: started
         env_file: ".env"
 
 - hosts: webservers
-  vars_files:
-    - group_vars/webservers/vault.yml
   roles:
       - { role: datadog.datadog, become: yes }
   vars:

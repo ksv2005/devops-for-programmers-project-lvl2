@@ -1,2 +1,9 @@
-version: 5.0.2
+redmine_version: 5.0.2
 url: https://home-cooking.ru/
+redmine_db_host: "{{ redmine_db_host }}"
+redmine_db_database: "{{ redmine_db_database }}"
+redmine_db_username: "{{ redmine_db_username }}"
+redmine_db_password: "{{ redmine_db_password }}"
+redmine_db_port: "{{ redmine_db_port }}"
+datadog_api_key: "{{ datadog_api_key }}"
+datadog_site: "{{ datadog_site }}"
